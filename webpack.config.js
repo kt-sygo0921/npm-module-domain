@@ -8,29 +8,28 @@ const basePath = './';
 
 module.exports = () => {
     return {
+        mode: "production",
         entry: `${basePath}/src/index.tsx`,
         output: {
-            path: convertRootPath('dist'),
-            filename: 'index.js',
+            path: convertRootPath('umd'),
+            filename: 'index.umd.js',
+            library: "npm-module-domain",
+            libraryTarget: "umd"
         },
         devtool: 'source-map',
         module: {
             rules: [
                 {
-                    test: /\.m?js$/,
-                    use: {
-                        loader: 'babel-loader',
-                        options: {
-                            ...JSON.parse(fs.readFileSync(convertRootPath('./.babelrc'))),
-                        },
-                    },
-                    exclude: {
-                        include: /node_modules/,
-                    },
-                },
-                {
                     test: /\.tsx?$/,
-                    use: [{loader: 'babel-loader'}, {loader: 'ts-loader'}],
+                    exclude: /node_modules/,
+                    use: [{
+                        loader: "babel-loader"
+                    },{
+                        loader: "ts-loader",
+                        options: {
+                            configFile: "tsconfig.umd.json"
+                        }
+                    }],
                     include: [convertRootPath('src')],
                 },
             ],
@@ -38,12 +37,6 @@ module.exports = () => {
         resolve: {
             extensions: ['.ts', '.tsx', '.js', '.json'],
         },
-        plugins: [
-            new HtmlWebpackPlugin({
-                filename: 'index.html',
-                template: convertRootPath(`${basePath}/example/index.html`),
-            }),
-        ],
         devServer: {
             port: 3001,
             host: '0.0.0.0',

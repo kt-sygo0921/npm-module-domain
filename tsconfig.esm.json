@@ -4,6 +4,7 @@
       "module": "ESNEXT",
       "jsx": "preserve",
       "strict": true,
+      "outDir": "./esm",
       "removeComments": true,
       "noImplicitAny": false,
       "strictNullChecks": true,
