@@ -1,7 +1,7 @@
 {
     "extends": "./tsconfig.base",
     "compilerOptions": {
-      "module": "commonjs",
-      // "outDir": "./lib",
+      "module": "ESNEXT",
+      // "outDir": "./esm",
     },
 }

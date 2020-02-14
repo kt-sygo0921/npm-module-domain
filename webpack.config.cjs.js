@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const convertRootPath = filename => path.resolve(__dirname, filename);
 
@@ -11,7 +10,7 @@ module.exports = () => {
         mode: "production",
         entry: `${basePath}/index.tsx`,
         output: {
-            path: convertRootPath('esm'),
+            path: convertRootPath('lib'),
             filename: 'index.js',
         },
         devtool: 'source-map',
@@ -25,27 +24,15 @@ module.exports = () => {
                     },{
                         loader: "ts-loader",
                         options: {
-                            configFile: "tsconfig.json"
+                            configFile: "tsconfig.cjs.json"
                         }
                     }],
                     include: [convertRootPath('src')],
                 },
             ],
         },
-        plugins: [
-            new HtmlWebpackPlugin({
-                filename: 'index.html',
-                template: convertRootPath(`${basePath}/index.html`),
-            }),
-        ],
         resolve: {
             extensions: ['.ts', '.tsx', '.js', '.json'],
-        },
-        devServer: {
-            port: 3001,
-            host: '0.0.0.0',
-            disableHostCheck: true,
-            contentBase: ['esm', 'static'],
         },
         performance: {
             hints: false,
