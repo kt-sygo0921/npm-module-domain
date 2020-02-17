@@ -1,5 +1,6 @@
 import * as React from 'react';
-import fetch from 'unfetch'
+import fetch from 'unfetch';
+import {Domain1} from '@kt-sygo0921/npm-module-domain';
 import Spinner from './Spinner';
 
 interface IResponse {
@@ -22,6 +23,8 @@ const Components: React.FC = () => {
     }, [])
     return (
         <>
+            <h1>表示てすと</h1>
+            <h2>非同期通信</h2>
             {response ? (
                 <>
                     <p>非同期通信結果</p>
@@ -37,6 +40,10 @@ const Components: React.FC = () => {
             ) : (
                 <p>loading...</p>
             )}
+            <div>
+                <h2>他のドメインのコンポーネントをimportして配置</h2>
+                <Domain1 />
+            </div>
         </>
     );
 }
