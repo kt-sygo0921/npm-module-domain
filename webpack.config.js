@@ -35,7 +35,7 @@ module.exports = () => {
             }),
         ],
         devServer: {
-            port: 3001,
+            port: 3002,
             host: '0.0.0.0',
             disableHostCheck: true,
             contentBase: ['dist'],
