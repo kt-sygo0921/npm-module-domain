@@ -1,13 +1,14 @@
 const fs = require('fs');
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const convertRootPath = filename => path.resolve(__dirname, filename);
 
-const basePath = './src';
+const basePath = './src/features';
 
 module.exports = () => {
     return {
-        mode: "production",
+        mode: 'development',
         entry: `${basePath}/index.tsx`,
         output: {
             path: convertRootPath('lib'),
@@ -19,14 +20,7 @@ module.exports = () => {
                 {
                     test: /\.tsx?$/,
                     exclude: /node_modules/,
-                    use: [{
-                        loader: "babel-loader"
-                    },{
-                        loader: "ts-loader",
-                        options: {
-                            configFile: "tsconfig.cjs.json"
-                        }
-                    }],
+                    use: [{loader: 'babel-loader'}, {loader: 'ts-loader'}],
                     include: [convertRootPath('src')],
                 },
             ],

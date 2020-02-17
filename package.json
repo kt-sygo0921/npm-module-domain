@@ -1,9 +1,8 @@
 {
   "name": "@kt-sygo0921/npm-module-domain",
-  "version": "1.1.0",
+  "version": "1.1.11",
   "description": "npm-module-domain",
   "main": "./lib/index.js",
-  "module": "./esm/index.js",
   "types": "./lib/index.d.ts",
   "file": [
     "lib",
@@ -11,10 +10,15 @@
     "umd"
   ],
   "scripts": {
-    "build": "npm run build:cjs && npm run build:esm",
-    "build:cjs": "webpack --config webpack.config.cjs.js",
-    "build:esm": "webpack",
-    "dev": "webpack-dev-server --open --hot"
+    "build": "webpack",
+    "dev": "webpack-dev-server --open --hot",
+    "transpile": "tsc -p ./tsconfig.build.json && babel lib -d lib --copy-files",
+    "transpile:webpack": "webpack --config webpack.config.build.js",
+    "prepublishOnly": "npm run transpile:webpack"
+  },
+  "peerDependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
   },
   "dependencies": {
     "react": "^16.12.0",
@@ -23,6 +27,7 @@
     "unfetch": "^4.1.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.8.4",
     "@babel/core": "^7.8.4",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/plugin-proposal-object-rest-spread": "^7.8.3",
@@ -56,6 +61,8 @@
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.10.3"
   },
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "repository": "https://github.com/kt-sygo0921/npm-module-domain.git"
 }
