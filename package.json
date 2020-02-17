@@ -1,9 +1,9 @@
 {
   "name": "@kt-sygo0921/npm-module-domain",
-  "version": "1.1.11",
+  "version": "1.1.13",
   "description": "npm-module-domain",
-  "main": "./lib/index.js",
-  "types": "./lib/index.d.ts",
+  "main": "./lib/features/index.js",
+  "types": "./lib/features/index.d.ts",
   "file": [
     "lib",
     "esm",
@@ -13,8 +13,7 @@
     "build": "webpack",
     "dev": "webpack-dev-server --open --hot",
     "transpile": "tsc -p ./tsconfig.build.json && babel lib -d lib --copy-files",
-    "transpile:webpack": "webpack --config webpack.config.build.js",
-    "prepublishOnly": "npm run transpile:webpack"
+    "prepublishOnly": "npm run transpile"
   },
   "peerDependencies": {
     "react": "^16.12.0",
@@ -23,6 +22,7 @@
   "dependencies": {
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-modal": "^3.11.1",
     "react-router-dom": "^5.1.2",
     "unfetch": "^4.1.0"
   },
